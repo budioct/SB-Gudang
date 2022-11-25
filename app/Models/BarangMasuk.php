@@ -8,4 +8,16 @@ use Illuminate\Database\Eloquent\Model;
 class BarangMasuk extends Model
 {
     use HasFactory;
+
+    protected $fillable = ["barang_id", "user_id", "jml_brg_masuk", "total"];
+
+    public function barang(){
+
+        return $this->belongsTo('App\Models\Barang');
+    }
+
+    public function user(){
+        return $this->belongsTo('App\Models\User');
+    }
+
 }

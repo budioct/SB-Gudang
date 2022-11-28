@@ -300,7 +300,7 @@
 
                         <div class="form-group @error("jml_brg_keluar") has-error @enderror">
                             <label for="lname">Barang Out</label>
-                            <input type="text" id="jml_brg_keluar" name="jml_brg_keluar" class="form-control"
+                            <input type="number" id="jml_brg_keluar" name="jml_brg_keluar" class="form-control"
                                    placeholder="Barang Out" value="{{old("jml_brg_keluar")}}" required min="0">
                             @error("kategori")
                             <div class="invalid-feedback has-error">

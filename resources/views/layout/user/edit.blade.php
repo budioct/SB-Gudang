@@ -17,7 +17,7 @@
                         <input type="text" id="lname" name="name" class="form-control" placeholder="Name"
                                value="{{$data->name}}">
                         @error("name")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror
@@ -27,7 +27,7 @@
                         <input type="text" id="email" name="email" class="form-control" placeholder="Email"
                                value="{{$data->email}}">
                         @error("email")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror

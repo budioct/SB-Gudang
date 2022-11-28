@@ -14,7 +14,7 @@
                         <label for="lname">Name</label>
                         <input type="text" id="lname" name="name" class="form-control" placeholder="Name" value="{{old("name")}}">
                         @error("name")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror
@@ -24,7 +24,7 @@
                         <input type="text" id="email" name="email" class="form-control" placeholder="Email"
                                value="{{old("email")}}">
                         @error("email")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror
@@ -34,7 +34,7 @@
                         <input type="text" id="password" name="password" class="form-control" placeholder="Password"
                                value="{{old("password")}}">
                         @error("password")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror

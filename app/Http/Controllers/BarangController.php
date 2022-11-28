@@ -52,7 +52,7 @@ class BarangController extends Controller
         $data = Kategori::all();
 
         return view("layout.barang.create",
-            ["title" => "Add Barang"],
+            ["title" => "Tambah Barang"],
             compact(["data"])
         );
 

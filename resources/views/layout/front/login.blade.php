@@ -70,7 +70,7 @@
                                 <input type="text" name="email" class="form-control" id="signin-email"
                                        placeholder="Email" value="{{ old("email") }}">
                                 @error("email")
-                                <div class="invalid-feedback has-error">
+                                <div class="invalid-feedback  alert-danger alert-dismissible">
                                     {{$message}}
                                 </div>
                                 @enderror
@@ -80,7 +80,7 @@
                                 <input type="password" name="password" class="form-control" id="signin-password"
                                        placeholder="Password">
                                 @error("password")
-                                <div class="invalid-feedback has-error">
+                                <div class="invalid-feedback alert-danger alert-dismissible">
                                     {{$message}}
                                 </div>
                                 @enderror
@@ -110,7 +110,7 @@
 <script src="{{ asset('/tamplate/assets/vendor/bootstrap/js/bootstrap.min.js') }}"></script>
 <script src="{{ asset('/tamplate/assets/vendor/jquery-slimscroll/jquery.slimscroll.min.js') }}"></script>
 <script src="{{ asset('/tamplate/assets/vendor/toastr/toastr.min.js') }}"></script>
-<script src="{{ asset('/tamplate/assets/scripts/klorofil-common.js') }}"></script>
+{{--<script src="{{ asset('/tamplate/assets/scripts/klorofil-common.js') }}"></script>--}}
 
 <!-- Optional JavaScript -->
 <!-- jQuery first, then Popper.js, then Bootstrap JS -->

@@ -17,7 +17,7 @@
                         <input type="text" id="lname" name="kategori" class="form-control" placeholder="Name"
                                value="{{$data->kategori}}">
                         @error("kategori")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror

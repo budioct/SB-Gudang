@@ -22,7 +22,7 @@
                         </select>
 
                         @error("kategori_id")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror
@@ -33,7 +33,7 @@
                         <input type="text" id="email" name="namabarang" class="form-control" placeholder="Nama Barang"
                                value="{{old("namabarang")}}">
                         @error("namabarang")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror
@@ -43,7 +43,7 @@
                         <input type="text" id="password" name="harga" class="form-control" placeholder="Harga"
                                value="{{old("harga")}}">
                         @error("harga")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror
@@ -53,7 +53,7 @@
                         <input type="text" id="password" name="stok" class="form-control" placeholder="Stok"
                                value="{{old("stok")}}">
                         @error("stok")
-                        <div class="invalid-feedback has-error">
+                        <div class="invalid-feedback alert-danger alert-dismissible">
                             {{$message}}
                         </div>
                         @enderror

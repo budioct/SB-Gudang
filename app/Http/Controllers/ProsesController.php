@@ -58,7 +58,7 @@ class ProsesController extends Controller
         $barang = Barang::findOrFail($request->barang_id); // result {}
 
         if ($request->jml_brg_masuk == 0) {
-            return redirect("/proses/" . $barang->id . "/index")->with("fail", "Jumlah In tidak boleh 0");
+            return redirect("/proses/" . encrypt($barang->id) . "/index")->with("fail", "Jumlah In tidak boleh 0");
         } else {
 
             $data = BarangMasuk::create([
@@ -82,7 +82,7 @@ class ProsesController extends Controller
         $barang = Barang::findOrFail($request->barang_id); // {}
 
         if ($barang->stok < $request->jml_brg_keluar) {
-            return redirect("/proses/" . $barang->id . "/index")->with("fail", "Jumlah Out tidak boleh lebih dari stok yang tersedia");
+            return redirect("/proses/" . encrypt($barang->id) . "/index")->with("fail", "Jumlah Out tidak boleh lebih dari stok yang tersedia");
         } else {
 
             $data = BarangKeluar::create([

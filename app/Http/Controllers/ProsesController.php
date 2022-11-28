@@ -81,6 +81,9 @@ class ProsesController extends Controller
 
         $barang = Barang::findOrFail($request->barang_id); // {}
 
+        if($request->jml_brg_keluar == 0){
+            return redirect("/proses/" . encrypt($barang->id) . "/index")->with("fail", "Jumlah Out tidak boleh 0");
+        }
         if ($barang->stok < $request->jml_brg_keluar) {
             return redirect("/proses/" . encrypt($barang->id) . "/index")->with("fail", "Jumlah Out tidak boleh lebih dari stok yang tersedia");
         } else {

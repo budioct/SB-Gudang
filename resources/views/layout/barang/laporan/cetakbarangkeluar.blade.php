@@ -31,7 +31,6 @@
 <!-- content -->
 <div class="pusher">
     <div class="main-content">
-        {{--        {{ $data }}--}}
 
         <div class="ui segment">
             <div class="ui raised segment">
@@ -52,15 +51,14 @@
                     </tr>
                 </table>
 
-                <hr class="line">
                 <h3>
                     <p align="center">
-                        Laporan Keluar Barang
+                        Laporan Barang Keluar
                     </p>
                 </h3>
                 <h3>
                     <p align="center">
-                        Hari/Tanggal: <b> {{ $data->created_at->translatedFormat('l, d F Y') }} </b>
+                        Hari/Tanggal: <b> {{ $data->created_at->translatedFormat('l, d F Y H:i') }} </b>
                     </p>
                 </h3>
 
@@ -73,23 +71,24 @@
                     </thead>
                     <tbody>
                     <tr>
-                        <td style="text-align:center;" data-label="Name">{{ $data->barang->namabarang }}</td>
-                        <td style="text-align:center;" data-label="Age">{{ $data->jml_brg_keluar }} Unit</td>
+                        <td style="text-align:center;" data-label="Name"><b>{{ $data->barang->namabarang }}</b></td>
+                        <td style="text-align:center;" data-label="Age"><b>{{ $data->jml_brg_keluar }} Unit</b></td>
                     </tr>
                     </tbody>
                 </table>
 
-                <hr class="line">
+                <br>
+                <br>
 
                 <table class="ui  celled structured table" >
 
                     <tbody>
                     <tr>
-                        <td style="text-align:center;">Diserahkan Oleh</td>
+                        <td style="text-align:center;">Yang Menyerahkan Oleh</td>
                         <td class="center aligned"></td>
                         <td class="center aligned"></td>
                         <td class="center aligned"></td>
-                        <td style="text-align:center;">Diterima Oleh</td>
+                        <td style="text-align:center;">Yang Menerima Oleh</td>
                     </tr>
                     <tr>
                         <td style="text-align:center;"></td>
@@ -114,11 +113,11 @@
                         <td class="center aligned"></td>
                     </tr>
                     <tr>
-                        <td class="center aligned">( <b>{{ auth()->user()->name }}</b> )</td>
+                        <td class="center aligned">( <b>{{ $mengetahui->name }}</b> )</td>
                         <td class="center aligned"></td>
                         <td class="center aligned"></td>
                         <td class="center aligned"></td>
-                        <td class="center aligned">( <b>TTD</b> )</td>
+                        <td class="center aligned">( <b>{{ $peminjam->name }}</b> )</td>
                     </tr>
                     </tbody>
 

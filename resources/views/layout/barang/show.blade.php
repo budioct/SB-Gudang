@@ -2,10 +2,6 @@
 
 @section('content')
 
-    {{--    {{ $barang }}--}}
-    {{--        {{ $barangmasuk }}--}}
-    {{--        {{ $barangkeluar }}--}}
-
     <div class="container-fluid">
         <a href="/barang">
             <button type="button" class="btn btn-warning">
@@ -23,7 +19,8 @@
                     <div class="alert alert-danger alert-dismissible" role="alert">
                         <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span
                                 aria-hidden="true">×</span></button>
-                        <i class="fa fa-warning"></i> &nbsp; &nbsp; Stok <b>{{ $barang->namabarang }} <span style="color: #0c1312">0</span> Unit</b>
+                        <i class="fa fa-warning"></i> &nbsp; &nbsp; Stok <b>{{ $barang->namabarang }} <span
+                                style="color: #0c1312">0</span> Unit</b>
                     </div>
                 @endif
 
@@ -63,7 +60,7 @@
                                     @if( $barang->stok == 0)
                                         <td><span class="label label-danger"><b>{{ $barang->stok }} Unit</b></span></td>
                                     @else
-                                    <td>{{ $barang->stok }} Unit</td>
+                                        <td>{{ $barang->stok }} Unit</td>
                                     @endif
                                     <td>
                                         <!-- Button trigger modal -->
@@ -88,7 +85,6 @@
                             </table>
                         </div>
 
-
                     </div>
                 </div>
             </div>
@@ -110,7 +106,7 @@
             <div class="col-md-6">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><b>Barang Masuk</b></h3>
+                        <h3 class="panel-title"><b>Barang Masuk</b>&nbsp;<span class="label label-success"><i class="lnr lnr-enter-down"></i></span></h3>
                     </div>
                     <div class="panel-body">
 
@@ -120,7 +116,7 @@
                                 <tr>
                                     <th>No.</th>
                                     {{--                                    <th>Nama</th>--}}
-                                    <th>User</th>
+                                    <th>User Mengetahui</th>
                                     <th>Jumlah</th>
                                     <th>Tanggal & waktu</th>
                                     <th>Aksi</th>
@@ -133,7 +129,8 @@
                                         {{--                                        <td>{{ $init->barang->namabarang }}</td>--}}
                                         <td>{{ $init->user->name }}</td>
 
-                                        <td><span class="label label-info"><b>{{ $init->jml_brg_masuk }} Unit</b></span></td>
+                                        <td><span class="label label-info"><b>{{ $init->jml_brg_masuk }} Unit</b></span>
+                                        </td>
                                         <td><b>{{ $init->created_at->translatedFormat('l, d F Y H:i') }}</b></td>
                                         <td>
 
@@ -161,7 +158,7 @@
             <div class="col-md-6">
                 <div class="panel">
                     <div class="panel-heading">
-                        <h3 class="panel-title"><b>Barang Keluar</b></h3>
+                        <h3 class="panel-title"><b>Barang Keluar</b>&nbsp;<span class="label label-danger"><i class="lnr lnr-exit-up"></i></span></h3>
                     </div>
                     <div class="panel-body">
 
@@ -171,7 +168,7 @@
                                 <tr>
                                     <th>No.</th>
                                     {{--                                    <th>Nama</th>--}}
-                                    <th>User</th>
+                                    <th>User Mengetahui</th>
                                     <th>Jumlah</th>
                                     <th>Tanggal & waktu</th>
                                     <th>Aksi</th>
@@ -184,11 +181,14 @@
                                         {{--                                        <td>{{ $init->barang->namabarang }}</td>--}}
                                         <td>{{ $init->user->name }}</td>
 
-                                        <td><span class="label label-info"><b>{{ $init->jml_brg_keluar }} Unit</b></span></td>
-                                        <td><b>{{ $init->created_at }}</b></td>
+                                        <td><span
+                                                class="label label-info"><b>{{ $init->jml_brg_keluar }} Unit</b></span>
+                                        </td>
+                                        <td><b>{{ $init->created_at->translatedFormat('l, d F Y H:i') }}</b></td>
                                         <td>
 
-                                            <a href="/laporan/{{encrypt($init->id)}}/barangkeluar/cetak" target="_blank">
+                                            <a href="/laporan/{{encrypt($init->id)}}/barangkeluar/cetak"
+                                               target="_blank">
                                                 <button type="button" class="btn btn-primary" title="Preview"><i
                                                         class="lnr lnr-printer"></i>&nbsp;
                                                 </button>
@@ -200,7 +200,8 @@
                                 </tbody>
                             </table>
                             <!-- pagination -->
-                            Total Data Barang Keluar: <span class="label label-info"><b> {{ $barangkeluar->total() }} </b></span>
+                            Total Data Barang Keluar: <span
+                                class="label label-info"><b> {{ $barangkeluar->total() }} </b></span>
                             {{ $barangkeluar->links() }}
                         </div>
 
@@ -240,7 +241,7 @@
                         <div id="detail_barang"></div>
 
                         <div class="form-group @error("jml_brg_masuk") has-error @enderror">
-                            <label for="lbrgmasuk">Barang IN</label>
+                            <label for="lbrgmasuk">Jumlah Barang IN</label>
                             <input type="number" id="jml_brg_masuk" name="jml_brg_masuk" class="form-control"
                                    placeholder="Barang in" value="{{ old("jml_brg_masuk") }}" required min="0">
                             @error("jml_brg_masuk")
@@ -250,20 +251,29 @@
                             @enderror
                         </div>
 
-                            <label for="ltotal">Total Harga</label>
+                        <div class="form-group @error("peminjam") has-error @enderror">
+                            <label>Peminjam</label>
+                            <select class="form-control" name="peminjam" required>
+                                <option value="">-- Pilih Peminjam --</option>
+                                @foreach($peminjam as $init)
+                                    @if( $init->name != auth()->user()->name)
+                                        <option value="{{ $init->id }}">{{ $init->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+
+                            @error("peminjam")
+                            <div class="invalid-feedback alert-danger alert-dismissible">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+                        <label for="ltotal">Total Harga</label>
                         <div class="input-group">
                             <span class="input-group-addon"><b>Rp.</b></span>
                             <input type="text" id="total" name="total" class="form-control"
                                    placeholder="total" readonly>
                         </div>
-
-
-{{--                        <div class="form-group ">--}}
-{{--                            <label for="ltotal">Total Harga</label>--}}
-{{--                            <input type="text" id="total" name="total" class="form-control"--}}
-{{--                                   placeholder="total" readonly>--}}
-{{--                        </div>--}}
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -299,11 +309,29 @@
                         <input type="hidden" id="harga_asek" class="form-control" value="{{ $barang->harga }}" readonly>
 
                         <div class="form-group @error("jml_brg_keluar") has-error @enderror">
-                            <label for="lname">Barang Out</label>
+                            <label for="lname">Jumlah Barang OUT</label>
                             <input type="number" id="jml_brg_keluar" name="jml_brg_keluar" class="form-control"
                                    placeholder="Barang Out" value="{{old("jml_brg_keluar")}}" required min="0">
                             @error("kategori")
                             <div class="invalid-feedback has-error">
+                                {{$message}}
+                            </div>
+                            @enderror
+                        </div>
+
+                        <div class="form-group @error("peminjam") has-error @enderror">
+                            <label>Peminjam</label>
+                            <select class="form-control" name="peminjam" required>
+                                <option value="">-- Pilih Peminjam --</option>
+                                @foreach($peminjam as $init)
+                                    @if( $init->name != auth()->user()->name)
+                                        <option value="{{ $init->id }}">{{ $init->name }}</option>
+                                    @endif
+                                @endforeach
+                            </select>
+
+                            @error("peminjam")
+                            <div class="invalid-feedback alert-danger alert-dismissible">
                                 {{$message}}
                             </div>
                             @enderror
@@ -315,13 +343,6 @@
                             <input type="text" id="total1" name="total" class="form-control"
                                    placeholder="total" readonly>
                         </div>
-
-{{--                        <div class="form-group ">--}}
-{{--                            <label for="ltotal">Total Harga</label>--}}
-{{--                            <input type="text" id="total1" name="total" class="form-control"--}}
-{{--                                   placeholder="total" readonly>--}}
-{{--                        </div>--}}
-
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>

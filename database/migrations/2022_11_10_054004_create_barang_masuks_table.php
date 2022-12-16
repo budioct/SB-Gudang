@@ -19,6 +19,7 @@ class CreateBarangMasuksTable extends Migration
             $table->foreign('barang_id')->references('id')->on('barangs')->onDelete('cascade');
             $table->bigInteger('user_id')->unsigned();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->integer('id_peminjam')->nullable();
             $table->integer('jml_brg_masuk')->nullable();
             $table->bigInteger('total')->nullable();
             $table->timestamps();

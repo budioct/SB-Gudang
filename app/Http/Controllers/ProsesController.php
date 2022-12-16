@@ -45,15 +45,23 @@ class ProsesController extends Controller
             ->orderBy('created_at', 'desc')
             ->paginate(10);
 
+//        $peminjam = User::all();
+        $peminjam = User::select("users.id", "users.name")
+//            ->where('users.name', '!=', 'name')
+            ->orderBy('name', 'asc')
+            ->get();
+
         return view("layout.barang.show",
             ["title" => "Proses"],
-            compact(["barang", "barangmasuk", "barangkeluar",]
+            compact(["barang", "barangmasuk", "barangkeluar", "peminjam",]
             ));
 
     }
 
     public function store(Request $request)
     {
+
+//        dd($request->peminjam);
 
         $barang = Barang::findOrFail($request->barang_id); // result {}
 
@@ -66,6 +74,7 @@ class ProsesController extends Controller
                 "user_id" => $request->user_id,
                 "jml_brg_masuk" => $request->jml_brg_masuk,
                 "total" => $request->total,
+                "id_peminjam" => $request->peminjam,
             ]);
 
             $barang->stok += $request->jml_brg_masuk;
@@ -78,6 +87,8 @@ class ProsesController extends Controller
 
     public function delete(Request $request)
     {
+
+//                dd($request->peminjam);
 
         $barang = Barang::findOrFail($request->barang_id); // {}
 
@@ -93,6 +104,7 @@ class ProsesController extends Controller
                 "user_id" => $request->user_id,
                 "jml_brg_keluar" => $request->jml_brg_keluar,
                 "total" => $request->total,
+                "id_peminjam" => $request->peminjam,
             ]);
 
             $barang->stok -= $request->jml_brg_keluar;
@@ -106,12 +118,12 @@ class ProsesController extends Controller
     {
 
         $data = BarangMasuk::findOrFail(decrypt($id));
-
-//        dd($data);
+        $peminjam = User::findOrFail($data->id_peminjam);
+        $mengetahui = User::findOrFail($data->user_id);
 
         return view("layout.barang.laporan.cetakbarangmasuk",
-            ["title" => "Print"],
-            compact(["data"]
+            ["title" => "print barang masuk"],
+            compact(["data", "peminjam", "mengetahui"]
             ));
 
     }
@@ -120,12 +132,12 @@ class ProsesController extends Controller
     {
 
         $data = BarangKeluar::findOrFail(decrypt($id));
-
-//        dd($data);
+        $peminjam = User::findOrFail($data->id_peminjam);
+        $mengetahui = User::findOrFail($data->user_id);
 
         return view("layout.barang.laporan.cetakbarangkeluar",
-            ["title" => "cetak barang keluar"],
-            compact(["data"]
+            ["title" => "print barang keluar"],
+            compact(["data", "peminjam", "mengetahui"]
             ));
 
     }

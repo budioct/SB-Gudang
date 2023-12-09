@@ -44,7 +44,7 @@
                                                     {{--                                                <a href="/kategori/{{$init->id}}/edit"><button type="button" class="btn btn-warning"><i class="lnr lnr-pencil"></i>&nbsp; Edit</button></a>--}}
                                                     <a>
                                                         <button type="submit" class="btn btn-danger" title="Delete"><i
-                                                                class="fa fa-trash">&nbsp; Hapus</i></button>
+                                                                class="fa fa-trash">&nbsp; Delete</i></button>
                                                     </a>
                                                     {{--                                            <input class="btn btn-danger fa fa-trash" data-id="{{$init->id}}" type="submit"--}}
                                                     {{--                                                   name="submit"--}}
